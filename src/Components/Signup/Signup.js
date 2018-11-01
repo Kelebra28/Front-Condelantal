@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import './style.scss';
+import {createUser} from '../../services'
 
 
 
@@ -29,11 +31,17 @@ class Signup extends Component{
         return password === checkPassword;
     }
 
-    onSubmit =  (event) => {
+    onSubmit =  async (event) => {
         event.preventDefault();
 
         if(this.validPasswords()){
-            //mandar data
+            let response = {}
+            response =  await createUser(this.state)
+                        .catch(({response}) => alert(response.data.error.errors[0].message))
+            if(response){
+                console.log(response.data.id)
+            }
+            
         }else{
             alert("Los password no coinciden")
         }
