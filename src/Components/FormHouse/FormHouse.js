@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 
 import FormAddress  from './FormAddress';
 import FormFacilities from './FormFacilities';
+import Firebase from '../../Firebase';
+import FileUploader from 'react-firebase-file-uploader';
 
-
+import {createHouse} from '../../services'
 
 class FormHouse extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             name:"",
-            type:"",
+            type:"H",
             price:"",
             description:"",
             status:"A",
@@ -25,11 +27,45 @@ class FormHouse extends Component {
         this.setState({[name]:value})
     }
 
-    formSubmit = (e) => {
+    handleUploadSuccess = (filename) =>  {
+        Firebase
+            .storage()
+            .ref('houses')
+            .child(filename)
+            .getDownloadURL()
+            .then(url => {
+                this.setState(prevState => ({
+                    photos:[
+                        ...prevState.photos,
+                        url
+                    ]
+                }))
+            })
+    }
+
+    handleUploadError =  (error) => {
+        console.log(error)
+
+    }
+
+
+
+    formSubmit = async(e) => {
         e.preventDefault();
+
         console.log(this.state)
-        console.log(this.refs.address.getState())
-        console.log(this.refs.facilities.getState())
+        let data = {
+            ...this.state,
+            address:{...this.refs.address.getState()},
+            facilities:{...this.refs.facilities.getState()}
+        }
+
+        let response =  await createHouse(data).catch(e => console.log(e))
+
+        if(response){
+            this.props.history.push('/')
+        }
+
     }
 
 
@@ -71,6 +107,24 @@ class FormHouse extends Component {
                                 value={this.state.description}
                                 onChange={this.onChangeInput}
                             ></textarea>
+                        </div >
+
+                        <div className="form-group">
+                                <label className="btn btn-info">
+                                    Agregar Imagenes
+                                    <FileUploader
+                                        hidden
+                                        accept="image/*"
+                                        randomizeFilename
+                                        multiple
+                                        storageRef={Firebase.storage()
+                                            .ref('houses')
+                                        }
+                                        onUploadError={this.handleUploadError}
+                                        onUploadSuccess={this.handleUploadSuccess}
+                                    />
+                                
+                                </label>
                         </div>
 
                         <FormAddress ref="address"/>

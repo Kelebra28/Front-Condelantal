@@ -27,6 +27,13 @@ class FormFacilities extends Component {
         this.setState({[name]:value})
     }
 
+    onCheckInput = (event) => {
+        const {name} = event.target
+        this.setState({[name]:!this.state[name]})
+
+    }
+
+
     getState = () =>  this.state
 
 
@@ -81,7 +88,7 @@ class FormFacilities extends Component {
                     <label htmlFor="">¿Aceptas Mascotas?</label>
                     <input type="checkbox" name="pet_friendly" className="form-control"
                         checked={this.state.pet_friendly}
-                        onChange={this.onChangeInput}
+                        onChange={this.onCheckInput}
                     />
                 </div>
 
@@ -89,7 +96,7 @@ class FormFacilities extends Component {
                     <label htmlFor="">¿Aceptas Fumadores?</label>
                     <input type="checkbox" name="smoke_friendly" className="form-control"
                         checked={this.state.smoke_friendly}
-                        onChange={this.onChangeInput}
+                        onChange={this.onCheckInput}
                     />
                 </div>
 
@@ -97,7 +104,7 @@ class FormFacilities extends Component {
                     <label htmlFor="">¿Tienes TV?</label>
                     <input type="checkbox" name="tv" className="form-control"
                         checked={this.state.tv}
-                        onChange={this.onChangeInput}
+                        onChange={this.onCheckInput}
                     />
                 </div>
 
@@ -105,7 +112,7 @@ class FormFacilities extends Component {
                     <label htmlFor="">¿Tienes Wifi?</label>
                     <input type="checkbox" name="wifi" className="form-control"
                         checked={this.state.wifi}
-                        onChange={this.onChangeInput}
+                        onChange={this.onCheckInput}
                     />
                 </div>
 
@@ -113,7 +120,7 @@ class FormFacilities extends Component {
                     <label htmlFor="">¿Tienes Cocina?</label>
                     <input type="checkbox" name="kitchen" className="form-control"
                         checked={this.state.kitchen}
-                        onChange={this.onChangeInput}
+                        onChange={this.onCheckInput}
                     />
                 </div>
 
