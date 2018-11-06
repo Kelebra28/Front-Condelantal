@@ -9,6 +9,9 @@ const loginUser =  (data)  =>  axios.post(`${API_URL}/users/login`,data)
 
 const getHouses =  () => axios.get(`${API_URL}/houses`)
 
+const getHouse =  (id) => axios.get(`${API_URL}/houses/${id}`)
+
+
 
 const createHouse =  (data) => axios.post(`${API_URL}/houses`,data,
 {headers:{"Authorization":`JWT ${localStorage.getItem('airbnbToken')}`}})
@@ -18,6 +21,7 @@ export  {
     createUser,
     loginUser,
     createHouse,
-    getHouses
+    getHouses,
+    getHouse
 
 }
