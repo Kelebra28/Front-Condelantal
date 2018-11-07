@@ -11,6 +11,8 @@ const getHouses =  () => axios.get(`${API_URL}/houses`)
 
 const getHouse =  (id) => axios.get(`${API_URL}/houses/${id}`)
 
+const calculatePrice = (data) => axios.post(`${API_URL}/bookings/calculate`,data)
+
 
 
 const createHouse =  (data) => axios.post(`${API_URL}/houses`,data,
@@ -22,6 +24,7 @@ export  {
     loginUser,
     createHouse,
     getHouses,
-    getHouse
+    getHouse,
+    calculatePrice
 
 }

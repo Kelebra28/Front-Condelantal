@@ -90,7 +90,7 @@ class DetailHouse extends  Component{
                      <h6>Pais:{house.address.country}</h6>
                      <h6>Ciudad:{house.address.city}</h6>
                         
-                     <a className="btn btn-info mt-5" href="">Reservar Casa</a>    
+                     <a className="btn btn-info mt-5" href={`/checkout/date/${this.state.id}`}>Reservar Casa</a>    
 
                         
 
