@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CardHouse from '../CardHouse/CardHouse';
-import {getHouses} from '../../services'
+import CardRestaurant from '../CardRestaurant/CardRestaurants';
+import {getRestaurants} from '../../services'
 
 
 
@@ -9,15 +9,15 @@ class Home  extends Component {
     constructor(){
         super();
         this.state = {
-            houses:[],
+            restaurants:[],
             isLoading:true
         }
     }
 
     componentDidMount(){
-     getHouses().then((response) => {
+     getRestaurants().then((response) => {
         this.setState({
-            houses:response.data,
+            restaurants:response.data,
             isLoading:false
         })
      }).catch((e) => {
@@ -25,11 +25,11 @@ class Home  extends Component {
      })
     }
 
-    renderHouses = () => {
-        return this.state.houses.map(
-            (house) => (
-                <CardHouse id={house.id} name={house.name} 
-                image={house.photos[0]}/>
+    renderRestaurants = () => {
+        return this.state.restaurants.map(
+            (restaurant) => (
+                <CardRestaurant id={restaurant.id} name={restaurant.name} 
+                image={restaurant.photos[0]}/>
             )
         )
 
@@ -39,14 +39,14 @@ class Home  extends Component {
     render(){
         return(
             <div>
-                <h2 className="mb-4">Todas las casas</h2>
+                <h2 className="mb-4">Todos los restaurantes</h2>
 
 
                 
                 <div className="row">
 
                         {
-                            (this.state.isLoading) ? (<h4>Cargando...</h4>): this.renderHouses()
+                            (this.state.isLoading) ? (<h4>Cargando...</h4>): this.renderRestaurants()
                         }
                     
 

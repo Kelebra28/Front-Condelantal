@@ -33,7 +33,7 @@ const PrivateRoute = ({component:Component,...rest}) => (
 
 
 const Logout  = () => {
-    localStorage.removeItem('airbnbToken');
+    localStorage.removeItem('condelantalToken');
     return <Redirect to="/login"/>
 } 
 
@@ -50,11 +50,11 @@ class Routes extends Component{
                             <Route exact path="/" component={Home} />
                             <Route exact path="/signup" component={Signup} />
                             <Route exact path="/login" component={Login} />
-                            <PrivateRoute exact  path="/house/create" component={FormHouse} />
+                            <PrivateRoute exact  path="/restaurant/create" component={FormRestaurant} />
                             <PrivateRoute exact path="/logout" component={Logout} />
                             <PrivateRoute exact path="/checkout/date/:id" component={DateForm} />
                             <PrivateRoute exact path="/checkout/price/:id" component={PriceForm} />
-                            <Route exact path="/house/:id" component={DetailHouse} />
+                            <Route exact path="/restaurant/:id" component={DetailHouse} />
 
                         </div>
 

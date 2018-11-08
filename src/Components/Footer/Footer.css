@@ -1,0 +1,30 @@
+text{
+    font-family: 'Ubuntu', sans-serif; 
+}
+
+.footer{
+   width: 100%;
+   height: auto;
+   padding-top: 0;
+   color: white;
+   font-family: 'Ubuntu', sans-serif;
+   text-decoration: none;
+}
+
+.footer_list{
+   list-style: none;
+}
+
+.footer li {
+   list-style-type: none;
+   text-decoration: none;
+  display: inline;
+  padding-right: 15px;
+}
+
+.footer li a{
+   list-style-type: none;
+   text-decoration: none;
+      color: white;
+  
+}

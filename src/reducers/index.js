@@ -4,7 +4,7 @@ const initialState = {}
 export default function(state=initialState,actions){
 
         switch(actions.type){
-            case 'ADD_DATE':
+            case 'ADD_PRODUCT':
                 return {...state,...actions.dates}
             
             case 'ADD_PRICE':

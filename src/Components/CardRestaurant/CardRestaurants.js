@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class CardHouse extends Component {
+class CardRestaurant extends Component {
 
     constructor(props){
         super(props)
@@ -25,7 +25,7 @@ class CardHouse extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{this.state.name}</h5>
 
-                        <a href={`/house/${this.state.id}`} className="btn btn-info">Ver Casa</a>
+                        <a href={`/restaurant/${this.state.id}`} className="btn btn-info">Ver Casa</a>
                     </div>
                 </div>
 
@@ -39,4 +39,4 @@ class CardHouse extends Component {
 }
 
 
-export default CardHouse;
+export default CardRestaurant;

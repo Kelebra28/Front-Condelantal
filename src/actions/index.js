@@ -2,9 +2,9 @@
 
 // {"start_date":"2018-01-01","due_date":"2018-01-04","num_guest":2}
 
-export const  addDates = dates => ({
-    type:"ADD_DATE",
-    dates
+export const  addProducts = products => ({
+    type:"ADD_PRODUCT",
+    products
 })
 
 

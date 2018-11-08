@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 import FormAddress  from './FormAddress';
-import FormFacilities from './FormFacilities';
+
 import Firebase from '../../Firebase';
 import FileUploader from 'react-firebase-file-uploader';
 
-import {createHouse} from '../../services'
+import {createRestaurant} from '../../services'
 
-class FormHouse extends Component {
+class FormRestaurant extends Component {
 
     constructor(props){
         super(props);
@@ -30,7 +30,7 @@ class FormHouse extends Component {
     handleUploadSuccess = (filename) =>  {
         Firebase
             .storage()
-            .ref('houses')
+            .ref('restaurants')
             .child(filename)
             .getDownloadURL()
             .then(url => {
@@ -56,11 +56,11 @@ class FormHouse extends Component {
         console.log(this.state)
         let data = {
             ...this.state,
-            address:{...this.refs.address.getState()},
-            facilities:{...this.refs.facilities.getState()}
+            address:{...this.refs.address.getState()}
+            
         }
 
-        let response =  await createHouse(data).catch(e => console.log(e))
+        let response =  await createRestaurant(data).catch(e => console.log(e))
 
         if(response){
             this.props.history.push('/')
@@ -83,14 +83,14 @@ class FormHouse extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="">Tipo de propiedad:</label>
+                            <label htmlFor="">Tipo de restaurante:</label>
                             <select name="type" className="form-control" 
                                 value={this.state.type}
                                 onChange={this.onChangeInput}
                             >
-                                <option value="H">Casa</option>
-                                <option value="A">Departamento</option>
-                                <option value="R">Cuarto</option>
+                                <option value="H">Comida Rapida</option>
+                                <option value="A">Comida Mexicana</option>
+                                <option value="R">Comida Vegana</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -118,7 +118,7 @@ class FormHouse extends Component {
                                         randomizeFilename
                                         multiple
                                         storageRef={Firebase.storage()
-                                            .ref('houses')
+                                            .ref('restaurants')
                                         }
                                         onUploadError={this.handleUploadError}
                                         onUploadSuccess={this.handleUploadSuccess}
@@ -128,7 +128,7 @@ class FormHouse extends Component {
                         </div>
 
                         <FormAddress ref="address"/>
-                        <FormFacilities ref="facilities"/>
+                       
 
                         <button type="submit" className="btn btn-success">Guardar</button>
 
@@ -142,5 +142,5 @@ class FormHouse extends Component {
 
 }
 
-export default FormHouse;
+export default FormRestaurant;
 

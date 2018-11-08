@@ -15,12 +15,11 @@ class  PriceForm extends Component {
     }
 
     componentDidMount(){
-        const {dates,match} =  this.props
+        const {orders,match} =  this.props
 
         let data = {
-            date_init:dates.start_date,
-            date_due:dates.due_date,
-            houseId:match.params.id
+           //producsts?
+            restaurantId:match.params.id
         }
         calculatePrice(data).then(({data}) => {
             this.setState({price:data.price})
@@ -56,7 +55,7 @@ class  PriceForm extends Component {
 }
 
 const mapStateToProps =  state => {
-    return {dates:{...state}}
+    return {orders:{...state}}
 }
 
 export default connect(mapStateToProps)(PriceForm);

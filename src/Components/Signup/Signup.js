@@ -43,7 +43,7 @@ class Signup extends Component{
             }
             
         }else{
-            alert("Los password no coinciden")
+            alert("La contraseña no funciona")
         }
 
     }

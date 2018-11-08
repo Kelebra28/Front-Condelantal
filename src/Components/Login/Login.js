@@ -27,7 +27,7 @@ class Login extends Component {
                                 .catch(({response})=>alert(response.data.message))
         if(response){
             const {token} = response.data
-            localStorage.setItem('airbnbToken',token)
+            localStorage.setItem('condelantalToken',token)
             this.props.history.push('/')
         }
 

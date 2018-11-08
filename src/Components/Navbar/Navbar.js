@@ -1,24 +1,27 @@
 import React,{Component} from 'react';
-import './style.scss'
+import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem,} from 'mdbreact';
 import payload from '../../resolvers/payload';
 import isAuthenticated from '../../resolvers/isAuthenticated';
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import './styles/navbar.css'
 
 class Navbar extends Component {
 
 
     authenticatedRender = () => {
         if(isAuthenticated()){
-            let user =  payload(localStorage.getItem('airbnbToken')).email
+            let user =  payload(localStorage.getItem('condelantalToken')).email
             return(
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <a className="nav-link" href="/me">Hola {user}!!</a>
-                    </li>
-                    <li className="nav-item">
-                        <a  className="nav-link" href="/logout">Logout</a>
-                    </li>
-                </ul>
+                <div className='header'>
+                <Router>
+                     <Navbar className='nav' color="red accent-4" dark expand="md" scrolling>
+                         <NavbarBrand href="#">
+                             <strong className='titulo'>Con Delantal</strong>
+                             <img className='imagen_navbar' src="https://png.icons8.com/ios/1600/chef-hat.png" height="30"/>
+                         </NavbarBrand>
+                     </Navbar>
+                  </Router> 
+             </div>
             )
         }else{
             return(
@@ -38,13 +41,12 @@ class Navbar extends Component {
 
     render(){
         return(
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a className="navbar-brand" href="/">Clone Airbnb</a>
+
 
                 <div className="collapse navbar-collapse">
                    {this.authenticatedRender()}
                 </div>
-            </nav>
+
         );
 
     }
